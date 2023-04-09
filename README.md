@@ -1,5 +1,8 @@
 # recache
 
+[![Go Documentation](https://godocs.io/git.sr.ht/~jamesponddotco/recache-go?status.svg)](https://godocs.io/git.sr.ht/~jamesponddotco/recache-go)
+[![Go Report Card](https://goreportcard.com/badge/git.sr.ht/~jamesponddotco/recache-go)](https://goreportcard.com/report/git.sr.ht/~jamesponddotco/recache-go)
+
 Package `recache` is a lightweight caching library for [Go's standard regular
 expression package](https://godocs.io/regexp) that offers improved performance
 by avoiding recompilation of global regular expression variables and by caching
