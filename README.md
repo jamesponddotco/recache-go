@@ -29,6 +29,11 @@ implementation created by someone else or write your own.
   provides a thread-safe in-memory cache using the [least recently used
   (LRU)](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU))
   cache replacement policy.
+- [`mockingjayre`](https://git.sr.ht/~jamesponddotco/recache-go/tree/trunk/item/mockingjayre)
+  provides an in-memory cache using the
+  [Mockingjay](https://en.wikipedia.org/wiki/Cache_replacement_policies#Mockingjay)
+  cache replacement policy.
+
 
 If wrote a `recache.Cache` implementation and wish it to be linked here,
 [please send a patch](https://git.sr.ht/~jamesponddotco/recache-go#resources).
