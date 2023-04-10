@@ -1,6 +1,7 @@
 package lrure_test
 
 import (
+	"context"
 	"regexp"
 	"testing"
 
@@ -9,20 +10,37 @@ import (
 )
 
 const (
-	testPattern = `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
+	testPattern = `p([a-z]+)ch`
 )
 
-func BenchmarkLRUCache(b *testing.B) {
+func BenchmarkMockingjayCache(b *testing.B) {
 	cache := lrure.New(recache.DefaultCapacity)
 
 	b.ResetTimer()
+
 	for i := 0; i < b.N; i++ {
-		_, _ = cache.Get(nil, testPattern, recache.Flag(0))
+		re, err := cache.Get(context.Background(), testPattern, recache.FlagMust)
+		if err != nil {
+			b.Fatal(err)
+		}
+
+		re.MatchString("peach")
+
+		reAgain, err := cache.Get(context.Background(), testPattern, recache.FlagMust)
+		if err != nil {
+			b.Fatal(err)
+		}
+
+		reAgain.MatchString("peach")
 	}
 }
 
 func BenchmarkRegexpCompile(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, _ = regexp.Compile(testPattern)
+		re := regexp.MustCompile(testPattern)
+		reAgain := regexp.MustCompile(testPattern)
+
+		re.MatchString("peach")
+		reAgain.MatchString("peach")
 	}
 }
